@@ -1,0 +1,44 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[][] party = new int[n][n];
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                party[i][j]=sc.nextInt();
+            }
+        }
+        Stack<Integer> st = new Stack<>();
+        for(int i=0;i<n;i++)
+        {
+            st.push(i);
+        }
+        while(st.size()>1)
+        {
+            int a=st.pop();
+            int b=st.pop();
+            if(party[a][b]!=0)
+            {
+                st.push(b);
+            }
+            else
+            {
+                st.push(a);
+            }
+        }
+        int cand=st.pop();
+        for(int i=0;i<n;i++)
+        {
+            if(party[cand][i]!=0)
+            {
+                System.out.println("No Celebrity");
+                return;
+            }
+        }
+        System.out.println(cand);
+        
+    }
+}
